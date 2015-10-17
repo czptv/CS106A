@@ -72,10 +72,6 @@ public class CopyOfBreakout extends GraphicsProgram {
 	private int brickCount;
 	
 	public void run() {
-		setup();
-	}
- 
-	private void setup() {
 		drawBricks();
 		drawPaddle();
 		drawBall();
