@@ -210,7 +210,7 @@ public class Breakout extends GraphicsProgram {
 		boolean win=(brickCount == 0);
 		boolean stillAlive= !(loseOneTurn || win);
 		
-		//Continue break the bricks in one turn until user lose or win
+		//Continue break the bricks in one turn until user loses or wins
 		while(stillAlive) {
 			moveBall();
 		}
