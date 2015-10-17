@@ -90,7 +90,6 @@ public class Breakout extends GraphicsProgram {
 	private void drawBricks() {
 		for (int i = 0; i<NBRICK_ROWS; i++) {
 			drawRow(i);
-			colorBrick(i);		
 		}
 	}
 
@@ -110,12 +109,13 @@ public class Breakout extends GraphicsProgram {
 		double y = BRICK_Y_OFFSET + (BRICK_SEP + BRICK_HEIGHT) * row;
 		GRect brick = new GRect (x,y,BRICK_WIDTH, BRICK_HEIGHT);
 		brick.setFilled(true);
+		colorBrick(row, brick);
 		add(brick);
 	}
 	
 	//set color for the bricks according to which rows they are in.	
 	
-	private void colorBrick(int row) {
+	private void colorBrick(int row, GRect brick) {
 		if (row<2) {
 			brick.setColor(Color.RED);
 		}
