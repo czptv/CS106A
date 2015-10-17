@@ -73,8 +73,6 @@ public class CopyOfBreakout extends GraphicsProgram {
 	
 	public void run() {
 		setup();
-		play();
-			
 	}
  
 	private void setup() {
