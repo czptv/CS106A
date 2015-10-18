@@ -266,7 +266,7 @@ public class Breakout extends GraphicsProgram {
 			break;
 		}
 		else if (obj == null) {
-			break
+			break;
 		}
 		}
 		else {
