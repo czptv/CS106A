@@ -189,7 +189,7 @@ private static final int DELAY = 50;
 	}
 	
 	private void getVelocity() {
-		vy = -3.0;
+		vy = 3.0;
 		vx = rgen.nextDouble(1.0, 3.0);
 		if (rgen.nextBoolean(0.5)) {
 			vx = -vx;
