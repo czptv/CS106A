@@ -69,7 +69,7 @@ public class Breakout extends GraphicsProgram {
 	private GOval ball;
 	private double vx, vy; // the x component and y component of velocity of ball
 	private RandomGenerator rgen = RandomGenerator.getInstance();
-	private int brickCount;
+	private int brickCount = NBRICK_ROWS * NBRICKS_PER_ROW ;
 	
 	public void run() {
 		setup();
