@@ -253,7 +253,7 @@ public class Breakout extends GraphicsProgram {
 			vy = -vy;
 		}
 		else if (obj == null) {
-			checkSide(x - BALL_RADIUS,y); //check left side
+			checkSide(x - BALL_RADIUS, y); //check left side
 			checkSide(x + BALL_RADIUS, y); //check right side
 		} 
 		else {
