@@ -100,13 +100,21 @@ public class CopyOfBreakout extends GraphicsProgram {
 	
 	private void play() {
 		waitForClick();
-		moveBall();
+		gaming();
 	}
 	
 	/*
 	 * After the user clicks, the balls gains an initial speed and starts to move.
 	 */
-	
+	private void gaming() {
+		boolean loseOneTurn=(ball.getY() >= HEIGHT);
+		boolean win=(brickCount == 0);
+		boolean stillAlive= !(loseOneTurn || win);		
+		while (stillAlive) {
+			moveBall();
+		}
+	}
+
 	
 
 	private void moveBall() {
