@@ -61,6 +61,7 @@ public class CopyOfBreakout extends GraphicsProgram {
 
 /** Animation delay or pause time between ball moves */
 private static final int DELAY = 50;
+private static final Color Color_RED = null;
 
 /* Method: run() */
 /** Runs the Breakout program. */
@@ -248,6 +249,8 @@ private static final int DELAY = 50;
 	
 	private void checkTopBottom (double x, double y) {
 		GObject obj = getElementAt(x,y);
+		obj.setColor(Color_RED);
+		add(obj);
 		if (obj == paddle) {
 			vy = -vy;
 		}
