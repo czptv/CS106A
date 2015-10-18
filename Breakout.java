@@ -221,13 +221,16 @@ public class Breakout extends GraphicsProgram {
 	}
 	
 	private void checkWall() {
-		if ((ball.getX() - vx <= 0) || (ball.getX() + vx >= WIDTH)) {
+		boolean checkLeftWall = ball.getX() - vx <= 0;
+		boolean checkRightWall = 
+		if (() || (ball.getX() + vx >= WIDTH)) {
 			vx = -vx;
 		}
-		if (ball.getY())
+		if (ball.getY() )
 	}
 	
 	private void checkObject() {
+		
 		if ()
 	}
 	
