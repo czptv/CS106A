@@ -253,9 +253,12 @@ private static final int DELAY = 50;
 			vy = -vy;
 		}
 		else if (obj == ball) {
-			checkSide(x - BALL_RADIUS, y); //check left side
-			checkSide(x + BALL_RADIUS, y); //check right side
-			vy = -vy;
+			int hitLeft = checkSide(x - BALL_RADIUS, y); //check left side
+			int hitRight= checkSide(x + BALL_RADIUS, y); //check right side
+			int hitTotal= hitLeft + hitRight;
+			if (hitTotal != 0) {
+				vy = -vy;
+			}
 		} 
 		else {
 			remove(obj);
@@ -264,12 +267,14 @@ private static final int DELAY = 50;
 		}
 	}
 
-	private void checkSide(double x, double y) {
+	private int checkSide(double x, double y) {
 		GObject obj = getElementAt(x,y);
 		if ((obj != null) && (obj !=paddle)) {
 			remove (obj);
 			brickCount--;
+			return 1;
 		}
+		return 0;
 
 	}
 }
