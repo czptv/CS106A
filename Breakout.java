@@ -255,7 +255,7 @@ private static final int DELAY = 50;
 		if (obj == paddle) {
 			vy = -vy;
 		}
-		else if (obj == null) {
+		else if (obj !=ball) {
 			checkSide(x - BALL_RADIUS, y); //check left side
 			checkSide(x + BALL_RADIUS, y); //check right side
 		} 
@@ -268,7 +268,7 @@ private static final int DELAY = 50;
 	
 	private void checkLeftRight (double x, double y) {
 		GObject obj = getElementAt(x,y);
-		if (obj == null) {
+		if (obj != ball) {
 			checkSide(x, y - BALL_RADIUS); //check top vertex
 			checkSide(x, y + BALL_RADIUS); //check bottom vertex
 		} 
