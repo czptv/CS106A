@@ -222,6 +222,7 @@ private static final Color Color_RED = null;
 	private void startFall() {
 		ball.move(vx, vy);
 		pause (DELAY);
+		ball.sendToBack();
 	}
 	
 	private void checkWall() {
@@ -243,14 +244,11 @@ private static final Color Color_RED = null;
 		double y1 = ball.getY();
 		double y2 = y1 + BALL_RADIUS;
 		double y3 = y2 + BALL_RADIUS;
-		checkTopBottom (x2, y1); //check top
 		checkTopBottom (x2, y3); //check bottom
 	}
 	
 	private void checkTopBottom (double x, double y) {
 		GObject obj = getElementAt(x,y);
-		obj.setColor(Color_RED);
-		add(obj);
 		if (obj == paddle) {
 			vy = -vy;
 		}
