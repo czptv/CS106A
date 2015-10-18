@@ -222,7 +222,7 @@ public class Breakout extends GraphicsProgram {
 	}
 	
 	private void checkWall() {
-		
+		if ()
 	}
 	
 	private void checkObject() {
