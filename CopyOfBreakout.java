@@ -248,7 +248,7 @@ private static final int DELAY = 50;
 	
 	private void checkTopBottom (double x, double y) {
 		GObject obj = getElementAt(x,y);
-		if (obj != paddle) {
+		if (obj == paddle) {
 			vy = -vy;
 		}
 	}
