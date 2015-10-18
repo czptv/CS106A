@@ -247,7 +247,7 @@ public class Breakout extends GraphicsProgram {
 		if ()
 	}
 	
-	private GObject getBrick (double x, double y) {
+	private void checkObject (double x, double y) {
 		GObject obj = getElementAt(x,y);
 		if (obj == paddle) {
 			vy = -vy;
