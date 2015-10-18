@@ -252,6 +252,10 @@ private static final int DELAY = 50;
 		if (obj == paddle) {
 			vy = -vy;
 		}
-
+		else if (obj !=ball) {
+			remove(obj);
+			brickCount--;
+			vy = -vy;
+		}
 	}
 }
