@@ -215,6 +215,7 @@ private static final int DELAY = 50;
 	private void moveBall() {
 		startFall();
 		checkWall();
+		checkObject();
 	}
 	
 	private void startFall() {
@@ -232,5 +233,38 @@ private static final int DELAY = 50;
 		if (checkTop) {
 			vy = -vy;
 		}
+	}
+	
+	private void checkObject() {
+		double x1 = ball.getX();
+		double x2 = x1 + BALL_RADIUS;
+		double x3 = x2 + BALL_RADIUS;
+		double y1 = ball.getY();
+		double y2 = y1 + BALL_RADIUS;
+		double y3 = y2 + BALL_RADIUS;
+		checkTopBottom (x2, y1); //check top
+		checkTopBottom (x2,y3); //check bottom
+	}
+	
+	private void checkTopBottom (double x, double y) {
+		GObject obj = getElementAt(x,y);
+		if (obj == paddle) {
+			vy = -vy;
+		}
+		else if (obj == null) {
+			checkSide(x - BALL_RADIUS, y); //check left side
+			checkSide(x + BALL_RADIUS, y); //check right side
+		} 
+		else {
+			remove(obj);
+			brickCount--;
+			vy = -vy;
+		}
+	}
+	
+	private void checkSide(double x, double y) {
+		GObject obj = getElementAt(x,y);
+		remove (obj);
+		brickCount--;
 	}
 }
