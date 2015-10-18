@@ -255,10 +255,13 @@ private static final int DELAY = 10;
 		if (obj == paddle) {
 			vy = -vy;
 		}
-		else if (obj ==ball) {
-			checkSide(x - BALL_RADIUS, y); //check left side
-			checkSide(x + BALL_RADIUS, y); //check right side
-			vy = -vy;
+		else if (obj == ball) {
+			int hitLeft = checkSide(x - BALL_RADIUS, y); //check left side
+			int hitRight= checkSide(x + BALL_RADIUS, y); //check right side
+			int hitTotal= hitLeft + hitRight;
+			if (hitTotal != 0) {
+				vy = -vy;
+			}
 		} 
 		else {
 			remove(obj);
@@ -273,9 +276,12 @@ private static final int DELAY = 10;
 			vx = -vx;
 		}
 		else if (obj == ball) {
-			checkSide(x, y - BALL_RADIUS); //check top vertex
-			checkSide(x, y + BALL_RADIUS); //check bottom vertex
-			vx = -vx;
+			int hitTop = checkSide(x, y - BALL_RADIUS); //check top vertex
+			int hitBottom = checkSide(x, y + BALL_RADIUS); //check bottom vertex
+			int hitTotal = hitTop + hitBottom;
+			if (hitTotal != 0) {
+				vx = -vx;
+			}
 		} 
 		else {
 			remove(obj);
@@ -284,12 +290,14 @@ private static final int DELAY = 10;
 		}
 	}
 	
-	private void checkSide(double x, double y) {
+	private int checkSide(double x, double y) {
 		GObject obj = getElementAt(x,y);
 		if ((obj != null) && (obj !=paddle)) {
 			remove (obj);
-			brickCount--;		
+			brickCount--;
+			return 1;
 		}
+		return 0;
 	}
 	
 	private void showPrompt() {

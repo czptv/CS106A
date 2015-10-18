@@ -275,6 +275,5 @@ private static final int DELAY = 50;
 			return 1;
 		}
 		return 0;
-
 	}
 }
