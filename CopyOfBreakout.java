@@ -270,15 +270,6 @@ private static final int DELAY = 10;
 		if (obj == paddle) {
 			vx = -vx;
 		}
-		if (obj == ball) {
-			checkSide(x, y - BALL_RADIUS); //check top vertex
-			checkSide(x, y + BALL_RADIUS); //check bottom vertex
-		} 
-		else {
-			remove(obj);
-			brickCount--;
-			vx = -vx;
-		}
 	}
 	
 	private void checkSide(double x, double y) {
