@@ -100,7 +100,6 @@ public class CopyOfBreakout extends GraphicsProgram {
 	
 	private void play() {
 		waitForClick();
-		getVelocity();
 		gaming();
 	}
 	
@@ -108,13 +107,6 @@ public class CopyOfBreakout extends GraphicsProgram {
 	 * After the user clicks, the balls gains an initial speed and starts to move.
 	 */
 	
-	private void getVelocity() {
-		vy = 3.0;
-		vx = rgen.nextDouble(1.0, 3.0);
-		if (rgen.nextBoolean(0.5)) {
-			vx = -vx;
-		}
-	}
 	
 	private void gaming() {
 		boolean loseOneTurn=(ball.getY() >= HEIGHT);
@@ -128,6 +120,6 @@ public class CopyOfBreakout extends GraphicsProgram {
 	}
 
 	private void moveBall() {
-		ball.move(vx, vy);
+		ball.move(4, 3);
 	}
 }	
