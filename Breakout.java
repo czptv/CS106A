@@ -65,7 +65,7 @@ public class Breakout extends GraphicsProgram {
 	 * Create an instance variable of a brick, a paddle and a ball.
 	 */
 	
-	private GRect brick, paddle;
+	private GRect paddle;
 	private GOval ball;
 	private double vx, vy; // the x component and y component of velocity of ball
 	private RandomGenerator rgen = RandomGenerator.getInstance();
@@ -232,22 +232,20 @@ public class Breakout extends GraphicsProgram {
 		}
 	}
 	
-	private GObject getCollidingObject() {
+	private void checkObject() {
 		double x1 = ball.getX();
 		double x2 = x1 + BALL_RADIUS;
 		double x3 = x2 + BALL_RADIUS;
 		double y1 = ball.getY();
 		double y2 = y1 + BALL_RADIUS;
 		double y3 = y2 + BALL_RADIUS;
-		
-		
-		
-		
-		
-		if ()
+		checkTopBottom (x2, y1); //check top
+		checkTopBottom (x2,y3); //check bottom
+		checkLeftRight (x1, y2); //check left
+		checkLeftRight (x3, y2); //check right
 	}
 	
-	private void checkObject (double x, double y) {
+	private void checkTopBottom (double x, double y) {
 		GObject obj = getElementAt(x,y);
 		if (obj == paddle) {
 			vy = -vy;
@@ -259,6 +257,18 @@ public class Breakout extends GraphicsProgram {
 		else {
 			remove(obj);
 			vy = -vy;
+		}
+	}
+	
+	private void checkLeftRight (double x, double y) {
+		GObject obj = getElementAt(x,y);
+		if (obj == null) {
+			checkSide(x, y - BALL_RADIUS); //check top vertex
+			checkSide(x, y + BALL_RADIUS); //check bottom vertex
+		} 
+		else {
+			remove(obj);
+			vx = -vx;
 		}
 	}
 	
