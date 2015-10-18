@@ -222,6 +222,7 @@ private static final int DELAY = 50;
 	private void startFall() {
 		ball.move(vx, vy);
 		pause (DELAY);
+		ball.sendToBack();
 	}
 	
 	private void checkWall() {
