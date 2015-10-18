@@ -249,14 +249,18 @@ public class Breakout extends GraphicsProgram {
 	
 	private GObject getBrick (double x, double y) {
 		GObject obj = getElementAt(x,y);
-		if (obj == null) {
-			checkSides();
-		}
 		if (obj == paddle) {
-			vy = -vy
+			vy = -vy;
 		}
+		else if (obj == null) {
+			checkSides();
+		} 
+		else {
+			remove(obj);
+	
 		
-		
+		}
+
 	
 	private void showPrompt() {
 		if (brickCount == 0) {
