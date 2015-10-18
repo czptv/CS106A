@@ -227,7 +227,9 @@ public class Breakout extends GraphicsProgram {
 		if ((checkLeftWall) || (checkRightWall)) {
 			vx = -vx;
 		}
-		if ()
+		if (checkTop) {
+			vy = -vy
+		}
 	}
 	
 	private void checkObject() {
