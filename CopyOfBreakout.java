@@ -186,7 +186,6 @@ private static final int DELAY = 10;
 		waitForClick();
 		getVelocity();
 		gaming();
-		showPrompt();
 	}
 	
 	/*
@@ -288,26 +287,5 @@ private static final int DELAY = 10;
 			remove (obj);
 		}
 		brickCount--;
-	}
-	
-	private void showPrompt() {
-		if (brickCount == 0) {
-			add(prompt("YOU WIN!")); 
-		}
-		else {
-			add(prompt("GAME OVER!"));
-		}
-	}
-	/*
-	 * prompt at the end of the game to indicate whether the user wins or loses
-	 */
-	
-	private GLabel prompt(String endGame) {
-		GLabel prompt=new GLabel(endGame);
-		prompt.setFont("Times-Bold-50");
-		double x=(WIDTH-prompt.getWidth())/2;
-		double y=HEIGHT*4.0/5.0;
-		prompt.setLocation(x, y);
-		return prompt;
 	}
 }
