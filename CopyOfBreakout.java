@@ -253,7 +253,8 @@ private static final int DELAY = 50;
 			vy = -vy;
 		}
 	}
-
+}
+	
 
 
 
