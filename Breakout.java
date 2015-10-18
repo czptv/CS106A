@@ -239,11 +239,18 @@ public class Breakout extends GraphicsProgram {
 		double y1 = ball.getY();
 		double y2 = y1 + BALL_RADIUS;
 		double y3 = y2 + BALL_RADIUS;
-		getElementAt(x1, y1) {
-			
-		}
+		
+		GObject obj1 = getElementAt(x2, y2);
+		
+		
 		
 		if ()
+	}
+	
+	private GObject checktObject (double x, double y) {
+		GObject obj = getElementAt(x,y);
+		
+		return
 	}
 	
 	private void showPrompt() {
