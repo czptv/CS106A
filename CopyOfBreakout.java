@@ -100,7 +100,7 @@ public class CopyOfBreakout extends GraphicsProgram {
 	
 	private void play() {
 		waitForClick();
-		gaming();
+		moveBall();
 	}
 	
 	/*
@@ -108,16 +108,6 @@ public class CopyOfBreakout extends GraphicsProgram {
 	 */
 	
 	
-	private void gaming() {
-		boolean loseOneTurn=(ball.getY() >= HEIGHT);
-		boolean win=(brickCount == 0);
-		boolean stillAlive= !(loseOneTurn || win);		
-		for (int i=0; i<NTURNS; i++) {
-			while (stillAlive) {
-				moveBall();
-			}
-		}
-	}
 
 	private void moveBall() {
 		ball.move(4, 3);
