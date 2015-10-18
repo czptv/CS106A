@@ -72,9 +72,7 @@ public class CopyOfBreakout extends GraphicsProgram {
 	private int brickCount = NBRICK_ROWS * NBRICKS_PER_ROW ;
 	
 	public void run() {
-		setup();
-		play();
-			
+		setup();			
 	}
  
 	private void setup() {
