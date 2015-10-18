@@ -264,14 +264,7 @@ private static final int DELAY = 50;
 			vy = -vy;
 		}
 	}
-	
-	private void checkLeftRight (double x, double y) {
-		GObject obj = getElementAt(x,y);
-		if (obj == paddle) {
-			vx = -vx;
-		}
-	}
-	
+
 	private void checkSide(double x, double y) {
 		GObject obj = getElementAt(x,y);
 		if (obj != null) {
