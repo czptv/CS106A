@@ -258,7 +258,7 @@ public class Breakout extends GraphicsProgram {
 		} 
 		else {
 			remove(obj);
-			vy = -y
+			vy = -vy;
 		}
 	}
 	
