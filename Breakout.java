@@ -60,7 +60,7 @@ public class Breakout extends GraphicsProgram {
 	private static final int NTURNS = 3;
 
 /** Animation delay or pause time between ball moves */
-private static final int DELAY = 50;
+private static final int DELAY = 20;
 
 /* Method: run() */
 /** Runs the Breakout program. */
