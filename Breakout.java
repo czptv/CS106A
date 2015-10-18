@@ -261,7 +261,8 @@ public class Breakout extends GraphicsProgram {
 		}
 	}
 	
-	private void checkSide() {
+	private void checkSide(double x, double y) {
+		
 		
 	}
 	
