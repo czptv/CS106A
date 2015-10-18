@@ -274,19 +274,6 @@ private static final int DELAY = 50;
 		if (obj == paddle) {
 			vx = -vx;
 		}
-		else if (obj == ball) {
-			int hitTop = checkSide(x, y - BALL_RADIUS); //check top vertex
-			int hitBottom = checkSide(x, y + BALL_RADIUS); //check bottom vertex
-			int hitTotal = hitTop + hitBottom;
-			if (hitTotal != 0) {
-				vx = -vx;
-			}
-		} 
-		else {
-			remove(obj);
-			brickCount--;
-			vx = -vx;
-		}
 	}
 	
 	private int checkSide(double x, double y) {
