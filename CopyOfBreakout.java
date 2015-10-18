@@ -259,8 +259,8 @@ private static final int DELAY = 50;
 	}
 	
 	private void checkSide(double x, double y) {
-		GObject obj = getElementAt(x,y);
-		remove (obj);
+		GObject a = getElementAt(x,y);
+		remove (a);
 		brickCount--;
 	}
 	
