@@ -262,7 +262,13 @@ public class Breakout extends GraphicsProgram {
 	}
 	
 	private void checkSide(double x, double y) {
-		
+		if (obj == paddle) {
+			vy = -vy;
+		}
+		else if (obj == null) {
+		}
+		else {
+			remove(obj);
 		
 	}
 	
