@@ -189,7 +189,7 @@ private static final int DELAY = 50;
 	}
 	
 	private void getVelocity() {
-		vy = -3.0;
+		vy = 3.0;
 		vx = rgen.nextDouble(1.0, 3.0);
 		if (rgen.nextBoolean(0.5)) {
 			vx = -vx;
@@ -247,25 +247,13 @@ private static final int DELAY = 50;
 		if (obj == paddle) {
 			vy = -vy;
 		}
-		else if (obj ==ball) {
-			checkSide(x - BALL_RADIUS, y); //check left side
-			checkSide(x + BALL_RADIUS, y); //check right side
-		} 
-		else {
+		else if (obj !=ball) {
 			remove(obj);
 			brickCount--;
 			vy = -vy;
 		}
 	}
-	
-	private void checkSide(double x, double y) {
-		GObject obj = getElementAt(x,y);
-		remove (obj);
-		brickCount--;
-	}
-	
 }
-
 
 
 
