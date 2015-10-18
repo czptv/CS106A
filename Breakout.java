@@ -232,7 +232,7 @@ public class Breakout extends GraphicsProgram {
 		}
 	}
 	
-	private void checkObject() {
+	private GObject getCollidingObject() {
 		
 		if ()
 	}
