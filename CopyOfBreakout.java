@@ -246,8 +246,6 @@ private static final int DELAY = 50;
 		double y3 = y2 + BALL_RADIUS;
 		checkTopBottom (x2, y1); //check top
 		checkTopBottom (x2, y3); //check bottom
-		checkLeftRight (x1, y2); //check left
-		checkLeftRight (x3, y2); //check right
 	}
 	
 	private void checkTopBottom (double x, double y) {
@@ -255,54 +253,10 @@ private static final int DELAY = 50;
 		if (obj == paddle) {
 			vy = -vy;
 		}
-		else if (obj == null) {
-			checkSide(x - BALL_RADIUS, y); //check left side
-			checkSide(x + BALL_RADIUS, y); //check right side
-		} 
 		else {
 			remove(obj);
 			brickCount--;
 			vy = -vy;
 		}
-	}
-	
-	private void checkLeftRight (double x, double y) {
-		GObject obj = getElementAt(x,y);
-		if (obj == null) {
-			checkSide(x, y - BALL_RADIUS); //check top vertex
-			checkSide(x, y + BALL_RADIUS); //check bottom vertex
-		} 
-		else {
-			remove(obj);
-			brickCount--;
-			vx = -vx;
-		}
-	}
-	
-	private void checkSide(double x, double y) {
-		GObject obj = getElementAt(x,y);
-		remove (obj);
-		brickCount--;
-	}
-	
-	private void showPrompt() {
-		if (brickCount == 0) {
-			add(prompt("YOU WIN!")); 
-		}
-		else {
-			add(prompt("GAME OVER!"));
-		}
-	}
-	/*
-	 * prompt at the end of the game to indicate whether the user wins or loses
-	 */
-	
-	private GLabel prompt(String endGame) {
-		GLabel prompt=new GLabel(endGame);
-		prompt.setFont("Times-Bold-50");
-		double x=(WIDTH-prompt.getWidth())/2;
-		double y=HEIGHT*4.0/5.0;
-		prompt.setLocation(x, y);
-		return prompt;
 	}
 }
