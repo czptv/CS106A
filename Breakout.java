@@ -210,7 +210,14 @@ public class Breakout extends GraphicsProgram {
 		}
 	}
 
-	private void moveBall()
+	private void moveBall() {
+		startFall();
+		checkObject();
+	}
+	
+	private void startFall() {
+		
+	}
 	
 	private void showPrompt() {
 		if (brickCount == 0) {
