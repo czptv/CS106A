@@ -243,7 +243,7 @@ private static final int DELAY = 50;
 		double y2 = y1 + BALL_RADIUS;
 		double y3 = y2 + BALL_RADIUS;
 		checkTopBottom (x2, y1); //check top
-		checkTopBottom (x2,y3); //check bottom
+		checkTopBottom (x2, y3); //check bottom
 	}
 	
 	private void checkTopBottom (double x, double y) {
@@ -251,20 +251,5 @@ private static final int DELAY = 50;
 		if (obj == paddle) {
 			vy = -vy;
 		}
-		else if (obj == null) {
-			checkSide(x - BALL_RADIUS, y); //check left side
-			checkSide(x + BALL_RADIUS, y); //check right side
-		} 
-		else {
-			remove(obj);
-			brickCount--;
-			vy = -vy;
-		}
-	}
-	
-	private void checkSide(double x, double y) {
-		GObject obj = getElementAt(x,y);
-		remove (obj);
-		brickCount--;
 	}
 }

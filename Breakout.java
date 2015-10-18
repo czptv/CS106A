@@ -244,7 +244,7 @@ private static final int DELAY = 50;
 		double y2 = y1 + BALL_RADIUS;
 		double y3 = y2 + BALL_RADIUS;
 		checkTopBottom (x2, y1); //check top
-		checkTopBottom (x2,y3); //check bottom
+		checkTopBottom (x2, y3); //check bottom
 		checkLeftRight (x1, y2); //check left
 		checkLeftRight (x3, y2); //check right
 	}
