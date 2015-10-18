@@ -186,12 +186,7 @@ private static final int DELAY = 50;
 		waitForClick();
 		getVelocity();
 		gaming();
-		showPrompt();
 	}
-	
-	/*
-	 * After the user clicks, the balls gains an initial speed and starts to move.
-	 */
 	
 	private void getVelocity() {
 		vy = 3.0;
