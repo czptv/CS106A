@@ -239,7 +239,7 @@ public class Breakout extends GraphicsProgram {
 		double y1 = ball.getY();
 		double y2 = y1 + BALL_RADIUS;
 		double y3 = y2 + BALL_RADIUS;
-		getElementAt(x1, )
+		getElementAt(x1, y1) {
 		
 		if ()
 	}
