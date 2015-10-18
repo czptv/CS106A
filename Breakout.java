@@ -259,7 +259,10 @@ public class Breakout extends GraphicsProgram {
 			remove(obj);
 		}
 	}
-
+	
+	private void checkSide() {
+		
+	}
 	
 	private void showPrompt() {
 		if (brickCount == 0) {
