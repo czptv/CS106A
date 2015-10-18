@@ -182,10 +182,8 @@ public class Breakout extends GraphicsProgram {
 	private void play() {
 		waitForClick();
 		getVelocity();
-		for (int i=0; i<NTURNS; i++) {
-			completeOneTurn();
-		}
-		add(prompt("YOU LOSER! GAME OVER!")); //prompt for if user lose the game
+		gaming();
+		showPrompt();
 	}
 	
 	/*
@@ -200,29 +198,26 @@ public class Breakout extends GraphicsProgram {
 		}
 	}
 	
-	/*
-	 * Complete one turn of the game until user wins or loses. 
-	 * If user breaks all the bricks, they win.
-	 */
-	
-	private void completeOneTurn() {
+	private void gaming() {
 		boolean loseOneTurn=(ball.getY() >= HEIGHT);
 		boolean win=(brickCount == 0);
-		boolean stillAlive= !(loseOneTurn || win);
-		
-		//Continue break the bricks in one turn until user loses or wins
-		while(stillAlive) {
-			moveBall();
+		boolean stillAlive= !(loseOneTurn || win);		
+		for (int i=0; i<NTURNS; i++) {
+			while (stillAlive) {
+				moveBall();
+			}
+			if (win) break;
 		}
-		
-		//if user wins, game over
-		if (win) {
-			add(prompt("You Win!"));
-			break;
+	}
+
+	private void showPrompt() {
+		if (brickCount == 0) {
+			add(prompt("YOU WIN!")); 
 		}
-	}	
-	
-	
+		else {
+			add(prompt("GAME OVER!"));
+		}
+	}
 	/*
 	 * prompt at the end of the game to indicate whether the user wins or loses
 	 */
