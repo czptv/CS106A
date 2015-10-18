@@ -240,17 +240,23 @@ public class Breakout extends GraphicsProgram {
 		double y2 = y1 + BALL_RADIUS;
 		double y3 = y2 + BALL_RADIUS;
 		
-		GObject obj1 = getElementAt(x2, y2);
+		
 		
 		
 		
 		if ()
 	}
 	
-	private GObject checktObject (double x, double y) {
+	private GObject getBrick (double x, double y) {
 		GObject obj = getElementAt(x,y);
-		return obj;
-	}
+		if (obj == null) {
+			checkSides();
+		}
+		if (obj == paddle) {
+			vy = -vy
+		}
+		
+		
 	
 	private void showPrompt() {
 		if (brickCount == 0) {
