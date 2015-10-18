@@ -233,6 +233,13 @@ public class Breakout extends GraphicsProgram {
 	}
 	
 	private GObject getCollidingObject() {
+		double x1 = ball.getX();
+		double x2 = x1 + BALL_RADIUS;
+		double x3 = x2 + BALL_RADIUS;
+		double y1 = ball.getY();
+		double y2 = y1 + BALL_RADIUS;
+		double y3 = y2 + BALL_RADIUS;
+		getElementAt(x1, )
 		
 		if ()
 	}
