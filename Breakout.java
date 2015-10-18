@@ -256,6 +256,7 @@ public class Breakout extends GraphicsProgram {
 		} 
 		else {
 			remove(obj);
+			brickCount--;
 			vy = -vy;
 		}
 	}
@@ -268,6 +269,7 @@ public class Breakout extends GraphicsProgram {
 		} 
 		else {
 			remove(obj);
+			brickCount--;
 			vx = -vx;
 		}
 	}
@@ -275,6 +277,7 @@ public class Breakout extends GraphicsProgram {
 	private void checkSide(double x, double y) {
 		GObject obj = getElementAt(x,y);
 		remove (obj);
+		brickCount--;
 	}
 	
 	private void showPrompt() {
