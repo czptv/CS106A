@@ -228,7 +228,7 @@ public class Breakout extends GraphicsProgram {
 			vx = -vx;
 		}
 		if (checkTop) {
-			vy = -vy
+			vy = -vy;
 		}
 	}
 	
