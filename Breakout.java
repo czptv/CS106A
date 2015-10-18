@@ -257,9 +257,8 @@ public class Breakout extends GraphicsProgram {
 		} 
 		else {
 			remove(obj);
-	
-		
 		}
+	}
 
 	
 	private void showPrompt() {
