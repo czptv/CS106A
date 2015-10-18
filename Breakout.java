@@ -212,11 +212,21 @@ public class Breakout extends GraphicsProgram {
 
 	private void moveBall() {
 		startFall();
+		checkWall();
 		checkObject();
 	}
 	
 	private void startFall() {
+		ball.move(vx, vy);
 		
+	}
+	
+	private void checkWall() {
+		
+	}
+	
+	private void checkObject() {
+		if ()
 	}
 	
 	private void showPrompt() {
