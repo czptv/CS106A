@@ -268,6 +268,9 @@ private static final int DELAY = 10;
 	
 	private void checkLeftRight (double x, double y) {
 		GObject obj = getElementAt(x,y);
+		if (obj == paddle) {
+			vx = -vx;
+		}
 		if (obj == ball) {
 			checkSide(x, y - BALL_RADIUS); //check top vertex
 			checkSide(x, y + BALL_RADIUS); //check bottom vertex
@@ -281,7 +284,9 @@ private static final int DELAY = 10;
 	
 	private void checkSide(double x, double y) {
 		GObject obj = getElementAt(x,y);
-		remove (obj);
+		if (obj != null) {
+			remove (obj);
+		}
 		brickCount--;
 	}
 	
