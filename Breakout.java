@@ -59,6 +59,9 @@ public class Breakout extends GraphicsProgram {
 /** Number of turns */
 	private static final int NTURNS = 3;
 
+/** Animation delay or pause time between ball moves */
+private static final int DELAY = 50;
+
 /* Method: run() */
 /** Runs the Breakout program. */
 	/*
@@ -218,6 +221,7 @@ public class Breakout extends GraphicsProgram {
 	
 	private void startFall() {
 		ball.move(vx, vy);
+		pause (DELAY);
 	}
 	
 	private void checkWall() {
