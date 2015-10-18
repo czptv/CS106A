@@ -258,6 +258,7 @@ private static final int DELAY = 10;
 		else if (obj ==ball) {
 			checkSide(x - BALL_RADIUS, y); //check left side
 			checkSide(x + BALL_RADIUS, y); //check right side
+			vy = -vy;
 		} 
 		else {
 			remove(obj);
@@ -271,9 +272,10 @@ private static final int DELAY = 10;
 		if (obj == paddle) {
 			vx = -vx;
 		}
-		if (obj == ball) {
+		else if (obj == ball) {
 			checkSide(x, y - BALL_RADIUS); //check top vertex
 			checkSide(x, y + BALL_RADIUS); //check bottom vertex
+			vx = -vx;
 		} 
 		else {
 			remove(obj);
@@ -286,8 +288,8 @@ private static final int DELAY = 10;
 		GObject obj = getElementAt(x,y);
 		if ((obj != null) && (obj !=paddle)) {
 			remove (obj);
+			brickCount--;		
 		}
-		brickCount--;
 	}
 	
 	private void showPrompt() {
