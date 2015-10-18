@@ -246,24 +246,12 @@ private static final int DELAY = 50;
 		GObject obj = getElementAt(x,y);
 		if (obj == paddle) {
 			vy = -vy;
-		}
-		else if (obj ==ball) {
-			checkSide(x - BALL_RADIUS, y); //check left side
-			checkSide(x + BALL_RADIUS, y); //check right side
-		} 
-		else {
 			remove(obj);
 			brickCount--;
 			vy = -vy;
 		}
 	}
-	
-	private void checkSide(double x, double y) {
-		GObject obj = getElementAt(x,y);
-		remove (obj);
-		brickCount--;
-	}
-	
+
 }
 
 
