@@ -253,14 +253,15 @@ public class Breakout extends GraphicsProgram {
 			vy = -vy;
 		}
 		else if (obj == null) {
-			checkSides(double ); 
+			checkSide(double ); //check left side
+			checkSide(); //check right side
 		} 
 		else {
 			remove(obj);
 		}
 	}
 	
-	private void checkSides() {
+	private void checkSide() {
 		
 	}
 	
