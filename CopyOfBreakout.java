@@ -72,9 +72,7 @@ public class CopyOfBreakout extends GraphicsProgram {
 	private int brickCount;
 	
 	public void run() {
-		setup();
-		play();
-			
+		setup();	
 	}
  
 	private void setup() {
@@ -170,7 +168,7 @@ public class CopyOfBreakout extends GraphicsProgram {
 		ball.setFilled(true);
 		add(ball);
 	}
-
+}
 	/*
 	 * Users start the game with a click. Ball begins to fall after the click. The game does not end
 	 * until the ball falls off the bottom of the screen or there is no brick left. If you break all
@@ -179,60 +177,4 @@ public class CopyOfBreakout extends GraphicsProgram {
 	 */
 	
 	
-	private void play() {
-		waitForClick();
-		getVelocity();
-		for (int i=0; i<NTURNS; i++) {
-			completeOneTurn();
-		}
-		add(prompt("YOU LOSER! GAME OVER!")); //prompt for if user lose the game
-	}
-	
-	/*
-	 * After the user clicks, the balls gains an initial speed and starts to move.
-	 */
-	
-	private void getVelocity() {
-		vy = 3.0;
-		vx = rgen.nextDouble(1.0, 3.0);
-		if (rgen.nextBoolean(0.5)) {
-			vx = -vx;
-		}
-	}
-	
-	/*
-	 * Complete one turn of the game until user wins or loses. 
-	 * If user breaks all the bricks, they win.
-	 */
-	
-	private void completeOneTurn() {
-		boolean loseOneTurn=(ball.getY() >= HEIGHT);
-		boolean win=(brickCount == 0);
-		boolean stillAlive= !(loseOneTurn || win);
-		
-		//Continue break the bricks in one turn until user loses or wins
-		while(stillAlive) {
-			moveBall();
-		}
-		
-		//if user wins, game over
-		if (win) {
-			add(prompt("You Win!"));
-			break;
-		}
-	}	
-	
-	
-	/*
-	 * prompt at the end of the game to indicate whether the user wins or loses
-	 */
-	
-	private GLabel prompt(String endGame) {
-		GLabel prompt=new GLabel(endGame);
-		prompt.setFont("Times-Bold-50");
-		double x=(WIDTH-prompt.getWidth())/2;
-		double y=HEIGHT*4.0/5.0;
-		prompt.setLocation(x, y);
-		return prompt;
-	}
-}
+
