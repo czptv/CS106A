@@ -249,7 +249,6 @@ public class Breakout extends GraphicsProgram {
 	
 	private GObject checktObject (double x, double y) {
 		GObject obj = getElementAt(x,y);
-		
 		return
 	}
 	
