@@ -210,6 +210,8 @@ public class Breakout extends GraphicsProgram {
 		}
 	}
 
+	private void moveBall()
+	
 	private void showPrompt() {
 		if (brickCount == 0) {
 			add(prompt("YOU WIN!")); 
