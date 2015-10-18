@@ -265,7 +265,7 @@ private static final int DELAY = 50;
 
 	private void checkSide(double x, double y) {
 		GObject obj = getElementAt(x,y);
-		if (obj != null) {
+		if ((obj != null) || (obj !=paddle)) {
 			remove (obj);
 		}
 		brickCount--;
