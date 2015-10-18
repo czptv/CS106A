@@ -258,10 +258,10 @@ public class Breakout extends GraphicsProgram {
 		} 
 		else {
 			remove(obj);
+			vy = -y
 		}
 	}
 	
-	//tention of bug
 	private void checkSide(double x, double y) {
 		GObject obj = getElementAt(x,y);
 		remove (obj);
