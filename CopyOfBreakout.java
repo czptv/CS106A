@@ -209,10 +209,6 @@ public class CopyOfBreakout extends GraphicsProgram {
 	}
 
 	private void moveBall() {
-		startFall();
-	}
-	
-	private void startFall() {
 		ball.move(vx, vy);
 	}
 }	
