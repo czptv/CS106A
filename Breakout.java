@@ -313,7 +313,7 @@ private static final int DELAY = 30;
 		GObject obj = getElementAt(x, y);    //check the corner for GObject
 		if (obj == paddle) {   
 			vy = -vy;
-		} else {
+		} else if (obj != null) {
 			remove (obj);
 			vy = -vy;
 		}
