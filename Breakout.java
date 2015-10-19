@@ -298,7 +298,9 @@ private static final int DELAY = 30;
 		double upperY = ball.getY();
 		double lowerY = ball.getY() + (2 * BALL_RADIUS);
 		GObject upperLeft = checkCorner(leftX, upperY);    //check upper-left corner
-		GObject upperRight = checkCorner(rightX, upperY);    //check upper-right corner
+		if (upperLeft == null) {
+			GObject upperRight = checkCorner(rightX, upperY);    //check upper-right corner
+		}
 		GObject lowerLeft = checkCorner(rightX, lowerY);    ////check lower-left corner
 		GObject lowerRight = checkCorner(leftX, lowerY);    //check lower-right corner
 		if ((lowerLeft == paddle) && (lowerRight == paddle)) {
