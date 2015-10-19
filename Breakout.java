@@ -298,10 +298,10 @@ private static final int DELAY = 30;
 		double upperY = ball.getY();
 		double lowerY = ball.getY() + (2 * BALL_RADIUS);
 		while (brickCount > 0) {
-			if (checkCorner(leftX, upperY) == null) break;    //check upper-left corner
-			if (checkCorner(rightX, upperY) == null) break;    //check upper-right corner
-			if (checkCorner(rightX, lowerY) == null) break;    ////check lower-left corner
-			if  (checkCorner(leftX, lowerY) == null) break;    //check lower-right corner
+			if (checkCorner(leftX, upperY) == paddle) break;    //check upper-left corner
+			if (checkCorner(rightX, upperY) == paddle) break;    //check upper-right corner
+			if (checkCorner(rightX, lowerY) == paddle) break;    ////check lower-left corner
+			if  (checkCorner(leftX, lowerY) == paddle) break;    //check lower-right corner
 		}
 
 	}
