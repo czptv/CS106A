@@ -253,11 +253,10 @@ private static final int DELAY = 30;
 			vy = -vy;
 		}
 		else if (obj == ball) {
-			int hitLeft = checkSide(x - BALL_RADIUS, y); //check left side
-			int hitRight= checkSide(x + BALL_RADIUS, y); //check right side
-			int hitTotal= hitLeft + hitRight;
-			if (hitTotal != 0) {
-				vy = -vy;
+			GObject leftSide = checkSide(x - BALL_RADIUS, y); //check left side
+			GObject rightSide = checkSide(x + BALL_RADIUS, y); //check right side
+				
+			vy = -vy;
 			}
 		} 
 		else {
