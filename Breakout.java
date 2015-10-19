@@ -335,12 +335,6 @@ private static final int DELAY = 30;
 		}
 	}
 
-	private void PresicionLowerBrick(GObject brick) {
-		if (ball.getY() < brick.getY() + BRICK_HEIGHT) {
-			double diff = brick.getY() + BRICK_HEIGHT - ball.getY();
-			ball.move(0, 2 * diff);
-		}
-	}
 	/*
 	 * 
 	 */
