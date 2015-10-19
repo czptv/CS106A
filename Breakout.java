@@ -316,7 +316,9 @@ private static final int DELAY = 30;
 		GObject obj = getElementAt(x, y);    //check the corner for GObject
 		if (obj == paddle) {   
 			vy = -vy;
+			PrecisionPaddle();
 		} else if (obj != null) {
+			PresicionLowerBrick(obj);
 			remove (obj);
 			vy = -vy;
 			brickCount--;
@@ -324,7 +326,19 @@ private static final int DELAY = 30;
 		return obj;
 	}
 	
-	
+	private void PrecisionPaddle() {
+		if (ball.getY() > HEIGHT - PADDLE_Y_OFFSET - PADDLE_HEIGHT - BALL_RADIUS * 2 ) {
+			double diff = ball.getY() - (HEIGHT - PADDLE_Y_OFFSET - PADDLE_HEIGHT - BALL_RADIUS * 2 );
+			ball.move(0, 2 * diff);
+		}
+	}
+
+	private void PresicionLowerBrick(GObject brick) {
+		if (ball.getY() < brick.getY() + BRICK_HEIGHT) {
+			double diff = brick.getY() + BRICK_HEIGHT - ball.getY();
+			ball.move(0, 2 * diff);
+		}
+	}
 	/*
 	 * 
 	 */
