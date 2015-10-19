@@ -60,7 +60,7 @@ public class Breakout extends GraphicsProgram {
 	private static final int NTURNS = 3;
 
 /** Animation delay or pause time between ball moves */
-private static final int DELAY = 30;
+private static final int DELAY = 20;
 
 /* Method: run() */
 /** Runs the Breakout program. */
@@ -89,11 +89,17 @@ private static final int DELAY = 30;
 	 */
 	
 	private void setup() {
+		showLifeCount();
 		drawBricks();
 		drawPaddle();
 		createBall();
 	}
 	
+	private void showLifeCount() {
+		GLabel lifeCount=new GLabel("Life Count: " + NTURNS);
+		lifeCount.setFont("Times-15");
+		lifeCount.setLocation(10, lifeCount.getAscent() + 10);
+	}
 	/*
 	 * Draw all the bricks.
 	 */
@@ -293,18 +299,22 @@ private static final int DELAY = 30;
 	 */
 	
 	private void checkObject() {
+		// x and y parameters for the different corners
 		double leftX = ball.getX();
 		double rightX = ball.getX() + (2 * BALL_RADIUS);
 		double upperY = ball.getY();
 		double lowerY = ball.getY() + (2 * BALL_RADIUS);
+		//check the corners for object
 		GObject upperLeft = checkCorner(leftX, upperY);    //check upper-left corner
 		if (upperLeft == null) {
 			GObject upperRight = checkCorner(rightX, upperY);    //check upper-right corner
 		}
 		GObject lowerLeft = checkCorner(rightX, lowerY);    ////check lower-left corner
-		GObject lowerRight = checkCorner(leftX, lowerY);    //check lower-right corner
-		if ((lowerLeft == paddle) && (lowerRight == paddle)) {
-			vy = -vy;
+		if (lowerLeft == null) {
+			GObject lowerRight = checkCorner(leftX, lowerY);    //check lower-right corner		
+			if ((lowerLeft == paddle) && (lowerRight == paddle)) {    //When both lower corners hit paddle, change direction.
+				vy = -vy;		
+			}
 		}
 	}
 	
@@ -335,7 +345,7 @@ private static final int DELAY = 30;
 	}
 
 	/*
-	 * 
+	 * Show the prompt to indicate whether user loses or wins.
 	 */
 	
 	private void showPrompt() {
