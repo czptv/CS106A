@@ -255,7 +255,7 @@ private static final int DELAY = 30;
 		else if (obj == ball) {
 			GObject leftSide = checkSide(x - BALL_RADIUS, y); //check left side
 			GObject rightSide = checkSide(x + BALL_RADIUS, y); //check right side
-				
+				if 
 			vy = -vy;
 			}
 		} 
