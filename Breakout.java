@@ -311,12 +311,13 @@ private static final int DELAY = 30;
 	
 	private void checkCorner(double x, double y) {
 		GObject obj = getElementAt(x, y);    //check the corner for GObject
-		if (obj == paddle) {   
+		if (obj == paddle) {
 			vy = -vy;
 		} else if (obj != null) {
 			remove (obj);
 			vy = -vy;
 		}
+		
 	}
 	
 	
