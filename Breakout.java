@@ -99,6 +99,7 @@ private static final int DELAY = 20;
 		GLabel lifeCount=new GLabel("Life Count: " + NTURNS);
 		lifeCount.setFont("Times-15");
 		lifeCount.setLocation(10, lifeCount.getAscent() + 10);
+		add (lifeCount);
 	}
 	/*
 	 * Draw all the bricks.
