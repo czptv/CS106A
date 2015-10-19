@@ -60,30 +60,38 @@ public class Breakout extends GraphicsProgram {
 	private static final int NTURNS = 3;
 
 /** Animation delay or pause time between ball moves */
-private static final int DELAY = 10;
+private static final int DELAY = 30;
 
 /* Method: run() */
 /** Runs the Breakout program. */
-	/*
-	 * Create an instance variable of a brick, a paddle and a ball.
-	 */
 	
-	private GRect paddle;
-	private GOval ball;
-	private double vx, vy; // the x component and y component of velocity of ball
-	private RandomGenerator rgen = RandomGenerator.getInstance();
-	private int brickCount = NBRICK_ROWS * NBRICKS_PER_ROW ;
+	 /*
+	  * instance variables
+	  */	 
+	
+	private GRect paddle;    //the paddle
+	private GOval ball;     //the ball
+	private double vx, vy;    // the x component and y component of velocity of ball
+	private RandomGenerator rgen = RandomGenerator.getInstance();    // create a random number generator
+	private int brickCount = NBRICK_ROWS * NBRICKS_PER_ROW ;     //total number of bricks
+	
+	/*
+	 * first create the items in the game then play.
+	 */
 	
 	public void run() {
 		setup();
 		play();
-			
 	}
  
+	/*
+	 * set up the items in the game, including bricks, a paddle and a ball.
+	 */
+	
 	private void setup() {
 		drawBricks();
 		drawPaddle();
-		drawBall();
+		createBall();
 	}
 	
 	/*
@@ -96,7 +104,9 @@ private static final int DELAY = 10;
 		}
 	}
 
-	//draw a row of the brick pile
+	/*
+	 * draw a row of the brick pile
+	 */
 	
 	private void drawRow(int row) {
 		for(int i = 0; i<NBRICKS_PER_ROW; i++) {
@@ -104,7 +114,9 @@ private static final int DELAY = 10;
 		}
 	}
 	
-	//create one brick
+	/*
+	 * create one brick.
+	 */	
 	
 	private void drawOneBrick(int row, int col) {
 		double x0 = (WIDTH - NBRICKS_PER_ROW * BRICK_WIDTH - (NBRICKS_PER_ROW - 1) * BRICK_SEP)/2; //the distance of leftmost brick to left border of the world
@@ -116,7 +128,9 @@ private static final int DELAY = 10;
 		add(brick);
 	}
 	
-	//set color for the bricks according to which rows they are in.	
+	/*
+	 * set color for the bricks according to which rows they are in.	
+	 */
 	
 	private void colorBrick(int row, GRect brick) {
 		if (row<2) {
@@ -150,7 +164,7 @@ private static final int DELAY = 10;
 	}
 	
 	/*
-	 * Make the paddle track the movement of user's mouse.
+	 * change the x location of the paddle according to the movement of user's mouse.
 	 */
 	
 	public void mouseMoved (MouseEvent e) {
@@ -162,7 +176,15 @@ private static final int DELAY = 10;
 	}
 	
 	/*
-	 * Draw a ball.
+	 * draw a ball and assign a initial velocity for it
+	 */
+	private void createBall() {
+		drawBall();
+		getVelocity();
+	}
+	
+	/*
+	 * Draw a ball at the center of the world with radius BALL_RADIUS.
 	 */
 	
 	private void drawBall() {
@@ -173,24 +195,11 @@ private static final int DELAY = 10;
 		ball.setFilled(true);
 		add(ball);
 	}
-
+		
 	/*
-	 * Users start the game with a click. Ball begins to fall after the click. The game does not end
-	 * until the ball falls off the bottom of the screen or there is no brick left. If you break all
-	 * the bricks before using up the lives, you win. If the ball falls off the bottom of the screen,
-	 * you turn to other round until you use up all your lives.
-	 */
-	
-	
-	private void play() {
-		waitForClick();
-		getVelocity();
-		gaming();
-		showPrompt();
-	}
-	
-	/*
-	 * After the user clicks, the balls gains an initial speed and starts to move.
+	 * The balls gains an initial speed and starts to move. 
+	 * The x component of the initial velocity is 3.0.
+	 * The y component of the initial velocity is a random number of certain range.
 	 */
 	
 	private void getVelocity() {
@@ -201,23 +210,57 @@ private static final int DELAY = 10;
 		}
 	}
 	
+
+	/*
+	 * Users start the game with a click. The game does not end until the ball falls off the bottom 
+	 * of the screen or there is no brick left. If you break all the bricks before using up the lives, 
+	 * you win. If the ball falls off the bottom of the screen, you turn to other round until you use 
+	 * up all your lives.
+	 */
+	
+	private void play() {
+		waitForClick();
+		gaming();
+		showPrompt();
+	}
+
+	/*
+	 * user plays the game. If the user loses in one turn,the game goes on to the next turn.
+	 * If the user loses NTURNS times, he or she loses the game. If the user wins in one turn,
+	 * the game does not go on to next turn, but ends.
+	 */
+	
 	private void gaming() {
-		boolean loseOneTurn=(ball.getY() >= HEIGHT);
-		boolean win=(brickCount == 0);
-		boolean stillAlive= !(loseOneTurn || win);		
-		for (int i=0; i<NTURNS; i++) {
-			while (stillAlive) {
+		boolean loseOneTurn;
+		boolean win = false;
+		boolean stillAlive= true;
+		for (int i=0; i<NTURNS; i++) {    //loops for the number of turns.
+			while (stillAlive) {    //the ball moves and bounces until the user loses or wins the turn.
 				moveBall();
+				loseOneTurn=(ball.getY() >= HEIGHT);   //user loses one turn when the ball falls under the paddle.
+				win=(brickCount == 0);    //user wins when there is no brick left.
+				stillAlive= !(loseOneTurn || win);
 			}
-			if (win) break;
+			if (win) break;    //breaks from the loop if the user wins in one turn.
+			createBall();    //a new ball appears on the center of the screen after one turn
+			stillAlive =true;
+			waitForClick();
 		}
 	}
 
+	/*
+	 * the ball starts to fall, and bounces when hitting the wall or objects.
+	 */
+
 	private void moveBall() {
-		startFall();
-		checkWall();
+		startFall();    
+		checkWall();    
 		checkObject();
 	}
+	
+	/*
+	 * the ball falls from its original location at the center of the screen.
+	 */
 	
 	private void startFall() {
 		ball.move(vx, vy);
@@ -225,8 +268,13 @@ private static final int DELAY = 10;
 		ball.sendToBack();
 	}
 	
+	/*
+	 * checks if the ball hits the left, the right or the top wall. Then change the movement
+	 * of the ball accordingly. 
+	 */
+	
 	private void checkWall() {
-		boolean checkLeftWall = ball.getX() <= 0;
+		boolean checkLeftWall = ball.getX() <= 0;   
 		boolean checkRightWall = ball.getX() + BALL_RADIUS * 2 >= WIDTH;
 		boolean checkTop = ball.getY() <= 0;
 		if ((checkLeftWall) || (checkRightWall)) {
@@ -237,68 +285,17 @@ private static final int DELAY = 10;
 		}
 	}
 	
+	/*
+	 * Check if the ball hit any object, brick or paddle. Then change its movement accordingly. 
+	 */
+	
 	private void checkObject() {
-		double x1 = ball.getX();
-		double x2 = x1 + BALL_RADIUS;
-		double x3 = x2 + BALL_RADIUS;
-		double y1 = ball.getY();
-		double y2 = y1 + BALL_RADIUS;
-		double y3 = y2 + BALL_RADIUS;
-		checkTopBottom (x2, y1); //check top
-		checkTopBottom (x2, y3); //check bottom
-		checkLeftRight (x1, y2); //check left
-		checkLeftRight (x3, y2); //check right
+		
 	}
 	
-	private void checkTopBottom (double x, double y) {
-		GObject obj = getElementAt(x,y);
-		if (obj == paddle) {
-			vy = -vy;
-		}
-		else if (obj == ball) {
-			int hitLeft = checkSide(x - BALL_RADIUS, y); //check left side
-			int hitRight= checkSide(x + BALL_RADIUS, y); //check right side
-			int hitTotal= hitLeft + hitRight;
-			if (hitTotal != 0) {
-				vy = -vy;
-			}
-		} 
-		else {
-			remove(obj);
-			brickCount--;
-			vy = -vy;
-		}
-	}
-	
-	private void checkLeftRight (double x, double y) {
-		GObject obj = getElementAt(x,y);
-		if (obj == paddle) {
-			vx = -vx;
-		}
-		else if (obj == ball) {
-			int hitTop = checkSide(x, y - BALL_RADIUS); //check top vertex
-			int hitBottom = checkSide(x, y + BALL_RADIUS); //check bottom vertex
-			int hitTotal = hitTop + hitBottom;
-			if (hitTotal != 0) {
-				vx = -vx;
-			}
-		} 
-		else {
-			remove(obj);
-			brickCount--;
-			vx = -vx;
-		}
-	}
-	
-	private int checkSide(double x, double y) {
-		GObject obj = getElementAt(x,y);
-		if ((obj != null) && (obj !=paddle)) {
-			remove (obj);
-			brickCount--;
-			return 1;
-		}
-		return 0;
-	}
+	/*
+	 * 
+	 */
 	
 	private void showPrompt() {
 		if (brickCount == 0) {
@@ -321,3 +318,5 @@ private static final int DELAY = 10;
 		return prompt;
 	}
 }
+
+
