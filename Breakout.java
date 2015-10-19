@@ -89,18 +89,11 @@ private static final int DELAY = 20;
 	 */
 	
 	private void setup() {
-		showLifeCount();
 		drawBricks();
 		drawPaddle();
 		createBall();
 	}
 	
-	private void showLifeCount() {
-		GLabel lifeCount=new GLabel("Life Count: " + NTURNS);
-		lifeCount.setFont("Times-15");
-		lifeCount.setLocation(10, lifeCount.getAscent() + 10);
-		add (lifeCount);
-	}
 	/*
 	 * Draw all the bricks.
 	 */
@@ -241,7 +234,8 @@ private static final int DELAY = 20;
 		boolean loseOneTurn;
 		boolean win = false;
 		boolean stillAlive= true;
-		for (int i=0; i<NTURNS; i++) {    //loops for the number of turns.
+		for (int i=NTURNS; i>0; i--) {    //loops for the number of turns.
+			showLifeCount(i);
 			while (stillAlive) {    //the ball moves and bounces until the user loses or wins the turn.
 				moveBall();
 				loseOneTurn=(ball.getY() >= HEIGHT);   //user loses one turn when the ball falls under the paddle.
@@ -255,6 +249,13 @@ private static final int DELAY = 20;
 		}
 	}
 
+	private void showLifeCount(int life) {
+		GLabel lifeCount=new GLabel("Life Count: " + life);
+		lifeCount.setFont("Times-15");
+		lifeCount.setLocation(10, lifeCount.getAscent() + 10);
+		add (lifeCount);
+	}
+	
 	/*
 	 * the ball starts to fall, and bounces when hitting the wall or objects.
 	 */
