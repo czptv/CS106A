@@ -297,10 +297,13 @@ private static final int DELAY = 30;
 		double rightX = ball.getX() + (2 * BALL_RADIUS);
 		double upperY = ball.getY();
 		double lowerY = ball.getY() + (2 * BALL_RADIUS);
-		checkCorner(leftX, upperY);    //check upper-left corner
-		checkCorner(rightX, upperY);    //check upper-right corner
-		checkCorner(rightX, lowerY);    ////check lower-left corner
-		checkCorner(leftX, lowerY);    //check lower-right corner
+		while (brickCount > 0) {
+			if (checkCorner(leftX, upperY) == null) break;    //check upper-left corner
+			if (checkCorner(rightX, upperY) == null) break;    //check upper-right corner
+			if (checkCorner(rightX, lowerY) == null) break;    ////check lower-left corner
+			if  (checkCorner(leftX, lowerY) == null) break;    //check lower-right corner
+		}
+
 	}
 	
 	/*
@@ -309,15 +312,16 @@ private static final int DELAY = 30;
 	 * If one of the corner is contained in paddle, bounce off without removing the paddle.
 	 */
 	
-	private void checkCorner(double x, double y) {
+	private GObject checkCorner(double x, double y) {
 		GObject obj = getElementAt(x, y);    //check the corner for GObject
 		if (obj == paddle) {
 			vy = -vy;
 		} else if (obj != null) {
 			remove (obj);
 			vy = -vy;
+			brickCount--;
 		}
-		
+		return obj;
 	}
 	
 	
