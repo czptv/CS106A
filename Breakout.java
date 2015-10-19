@@ -235,7 +235,8 @@ private static final int DELAY = 20;
 		boolean win = false;
 		boolean stillAlive= true;
 		for (int i=NTURNS; i>0; i--) {    //loops for the number of turns.
-			showLifeCount(i);
+			GLabel life=showLifeCount(i);
+			add (life);
 			while (stillAlive) {    //the ball moves and bounces until the user loses or wins the turn.
 				moveBall();
 				loseOneTurn=(ball.getY() >= HEIGHT);   //user loses one turn when the ball falls under the paddle.
@@ -246,14 +247,15 @@ private static final int DELAY = 20;
 			createBall();    //a new ball appears on the center of the screen after one turn
 			stillAlive =true;
 			waitForClick();
+			remove (life);
 		}
 	}
 
-	private void showLifeCount(int life) {
+	private GLabel showLifeCount(int life) {
 		GLabel lifeCount=new GLabel("Life Count: " + life);
 		lifeCount.setFont("Times-15");
 		lifeCount.setLocation(10, lifeCount.getAscent() + 10);
-		add (lifeCount);
+		return lifeCount;
 	}
 	
 	/*
