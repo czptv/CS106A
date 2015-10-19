@@ -320,7 +320,6 @@ private static final int DELAY = 30;
 			vy = -vy;
 			PrecisionPaddle();
 		} else if (obj != null) {
-			PresicionLowerBrick(obj);
 			remove (obj);
 			vy = -vy;
 			brickCount--;
