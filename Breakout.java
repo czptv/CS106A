@@ -286,12 +286,39 @@ private static final int DELAY = 30;
 	}
 	
 	/*
-	 * Check if the ball hit any object, brick or paddle. Then change its movement accordingly. 
+	 * Check the four corners of the square inscribing the ball in order. 
+	 * If one of the corner is contained in an object other than paddle, remove the object and then bounce off.
+	 * If one of the corner is contained in paddle, bounce off without removing the paddle.
+	 * 
 	 */
 	
 	private void checkObject() {
-		
+		double leftX = ball.getX();
+		double rightX = ball.getX() + (2 * BALL_RADIUS);
+		double upperY = ball.getY();
+		double lowerY = ball.getY() + (2 * BALL_RADIUS);
+		checkCorner(leftX, upperY);    //check upper-left corner
+		checkCorner(rightX, upperY);    //check upper-right corner
+		checkCorner(rightX, lowerY);    ////check lower-left corner
+		checkCorner(leftX, lowerY);    //check lower-right corner
 	}
+	
+	/*
+	 * check one corner of the square inscribing the ball in order.	 
+	 * If one of the corner is contained in an object other than paddle, remove the object and then bounce off.
+	 * If one of the corner is contained in paddle, bounce off without removing the paddle.
+	 */
+	
+	private void checkCorner(double x, double y) {
+		GObject obj = getElementAt(x, y);    //check the corner for GObject
+		if (obj == paddle) {   
+			remove (obj);
+			vy = -vy;
+		} else {
+			vy = -vy;
+		}
+	}
+	
 	
 	/*
 	 * 
