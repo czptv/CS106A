@@ -272,8 +272,8 @@ private static final int DELAY = 30;
 		if ((obj != null) && (obj !=paddle)) {
 			remove (obj);
 			brickCount--;
-			return 1;
 		}
-		return 0;
+		return obj;
+		
 	}
 }
