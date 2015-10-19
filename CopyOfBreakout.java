@@ -260,7 +260,7 @@ private static final int DELAY = 30;
 			if (leftSide || rightSide) {
 				vx = -vx;
 			}
-			if ((leftObject != null) || (rightObject != null)) {
+			else if ((leftObject != null) || (rightObject != null)) {
 				vy = -vy;
 			} 
 		}
