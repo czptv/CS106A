@@ -253,12 +253,17 @@ private static final int DELAY = 30;
 			vy = -vy;
 		}
 		else if (obj == ball) {
-			GObject leftSide = checkSide(x - BALL_RADIUS, y); //check left side
-			GObject rightSide = checkSide(x + BALL_RADIUS, y); //check right side
-			if 
-			vy = -vy;
+			GObject leftObject = checkSide(x - BALL_RADIUS, y); //check left side
+			GObject rightObject = checkSide(x + BALL_RADIUS, y); //check right side
+			boolean leftSide = (leftObject == paddle) && (rightObject != paddle);
+			boolean rightSide = (rightObject == paddle) && (leftObject != paddle);
+			if (leftSide || rightSide) {
+				vx = -vx;
 			}
-		} 
+			if ((leftObject != null) || (rightObject != null)) {
+				vy = -vy;
+			} 
+		}
 		else {
 			remove(obj);
 			brickCount--;
