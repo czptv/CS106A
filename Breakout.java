@@ -256,6 +256,7 @@ private static final int DELAY = 20;
 				win=(brickCount == 0);    //user wins when there is no brick left.
 				stillAlive= !(loseOneTurn || win);
 			}
+			remove (ball);
 			if (win) break;    //breaks from the loop if the user wins in one turn.
 			createBall();    //a new ball appears on the center of the screen after one turn
 			stillAlive =true;
