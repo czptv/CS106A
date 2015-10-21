@@ -247,7 +247,7 @@ private static final int DELAY = 20;
 		boolean win = false;
 		boolean stillAlive= true;
 		for (int i=NTURNS; i>0; i--) {    //loops for the number of turns.
-			GLabel life=showLifeCount(i);
+			GLabel life=showLifeCount(i-1);
 			waitForClick();
 			add (life);
 			while (stillAlive) {    //the ball moves and bounces until the user loses or wins the turn.
