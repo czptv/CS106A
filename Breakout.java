@@ -335,7 +335,6 @@ private static final int DELAY = 20;
 			GObject lowerRight = checkCorner(rightX, lowerY);    //check lower-right corner		
 			if ((lowerLeft == paddle) && (lowerRight == paddle)) {    //When both lower corners hit paddle, change direction.
 				vy = -vy;	
-				PrecisionPaddle();
 			}
 		}
 	}
