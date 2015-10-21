@@ -1,8 +1,9 @@
 /*
  * File: Breakout.java
  * -------------------
- * Name:
- * Section Leader:
+ * Name: Veronica Peng
+ * Parter: Yulei Wang
+ * Section Leader: Jay Evan
  * 
  * This file will eventually implement the game of Breakout.
  */
@@ -38,7 +39,7 @@ public class Breakout extends GraphicsProgram {
 	private static final int NBRICKS_PER_ROW = 10;
 
 /** Number of rows of bricks */
-	private static final int NBRICK_ROWS = 10;
+	private static final int NBRICK_ROWS = 1;
 
 /** Separation between bricks */
 	private static final int BRICK_SEP = 4;
