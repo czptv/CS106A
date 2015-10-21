@@ -260,6 +260,7 @@ private static final int DELAY = 20;
 			createBall();    //a new ball appears on the center of the screen after one turn
 			stillAlive =true;
 			remove (life);
+			remove (ball);
 		}
 		ball.setVisible(false);
 	}		
