@@ -178,6 +178,7 @@ private static final int DELAY = 20;
 	/*
 	 * draw a ball and assign a initial velocity for it
 	 */
+	
 	private void createBall() {
 		drawBall();
 		getVelocity();
@@ -219,7 +220,6 @@ private static final int DELAY = 20;
 	 */
 	
 	private void play() {
-		waitForClick();
 		gaming();
 		showPrompt();
 	}
@@ -236,6 +236,7 @@ private static final int DELAY = 20;
 		boolean stillAlive= true;
 		for (int i=NTURNS; i>0; i--) {    //loops for the number of turns.
 			GLabel life=showLifeCount(i);
+			waitForClick();
 			add (life);
 			while (stillAlive) {    //the ball moves and bounces until the user loses or wins the turn.
 				moveBall();
@@ -246,11 +247,15 @@ private static final int DELAY = 20;
 			if (win) break;    //breaks from the loop if the user wins in one turn.
 			createBall();    //a new ball appears on the center of the screen after one turn
 			stillAlive =true;
-			waitForClick();
 			remove (life);
 		}
-	}
-
+		ball.setVisible(false);
+	}		
+	
+	/*
+	 * Show remaining lives the user has at the upper left corner of the screen.
+	 */
+	
 	private GLabel showLifeCount(int life) {
 		GLabel lifeCount=new GLabel("Life Count: " + life);
 		lifeCount.setFont("Times-15");
@@ -313,11 +318,12 @@ private static final int DELAY = 20;
 		if (upperLeft == null) {
 			GObject upperRight = checkCorner(rightX, upperY);    //check upper-right corner
 		}
-		GObject lowerLeft = checkCorner(rightX, lowerY);    ////check lower-left corner
+		GObject lowerLeft = checkCorner(leftX, lowerY);    ////check lower-left corner
 		if (lowerLeft == null) {
-			GObject lowerRight = checkCorner(leftX, lowerY);    //check lower-right corner		
+			GObject lowerRight = checkCorner(rightX, lowerY);    //check lower-right corner		
 			if ((lowerLeft == paddle) && (lowerRight == paddle)) {    //When both lower corners hit paddle, change direction.
-				vy = -vy;		
+				vy = -vy;	
+				PrecisionPaddle();
 			}
 		}
 	}
@@ -331,20 +337,26 @@ private static final int DELAY = 20;
 	private GObject checkCorner(double x, double y) {
 		GObject obj = getElementAt(x, y);    //check the corner for GObject
 		if (obj == paddle) {   
-			vy = -vy;
+			vy = -Math.abs(vy);
 			PrecisionPaddle();
-		} else if (obj != null) {
+		} else if (obj != null) {    //check if the ball hits a brick
 			remove (obj);
 			vy = -vy;
 			brickCount--;
+			AudioClip bounceClip = MediaTools.loadAudioClip("bounce.au");
+			bounceClip.play();
 		}
 		return obj;
 	}
 	
+	/*
+	 * check if ball gets into the paddle, update location as appropriate
+	 */
+	
 	private void PrecisionPaddle() {
-		if (ball.getY() > HEIGHT - PADDLE_Y_OFFSET - PADDLE_HEIGHT - BALL_RADIUS * 2 ) {
+		if (ball.getY() > HEIGHT - PADDLE_Y_OFFSET - PADDLE_HEIGHT - BALL_RADIUS * 2 ) {    //check if the ball drops below the paddle
 			double diff = ball.getY() - (HEIGHT - PADDLE_Y_OFFSET - PADDLE_HEIGHT - BALL_RADIUS * 2 );
-			ball.move(0, 2 * diff);
+			ball.move(0, -2 * diff);    //move ball an amount equal to the amount it drops below the paddle
 		}
 	}
 
@@ -373,5 +385,7 @@ private static final int DELAY = 20;
 		return prompt;
 	}
 }
+
+
 
 
