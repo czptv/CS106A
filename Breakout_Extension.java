@@ -16,7 +16,7 @@ import java.applet.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class Breakout extends GraphicsProgram {
+public class Breakout_Extension extends GraphicsProgram {
 
 /** Width and height of application window in pixels.  On some platforms 
   * these may NOT actually be the dimensions of the graphics canvas. */
