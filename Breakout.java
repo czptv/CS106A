@@ -218,7 +218,7 @@ private static final int DELAY = 20;
 	 */
 	
 	private void showInitialLifeCount() {
-		GLabel lifeCount = prompt("You have " + NTURNS + "lives.");
+		GLabel lifeCount = prompt("You have " + NTURNS + " lives.");
 		add (lifeCount);
 		waitForClick ();
 		remove (lifeCount);
