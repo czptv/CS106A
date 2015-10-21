@@ -338,7 +338,6 @@ private static final int DELAY = 20;
 		GObject obj = getElementAt(x, y);    //check the corner for GObject
 		if (obj == paddle) {   
 			vy = -Math.abs(vy);
-			PrecisionPaddle();
 		} else if (obj != null) {    //check if the ball hits a brick
 			remove (obj);
 			vy = -vy;
@@ -349,16 +348,7 @@ private static final int DELAY = 20;
 		return obj;
 	}
 	
-	/*
-	 * check if ball gets into the paddle, update location as appropriate
-	 */
-	
-	private void PrecisionPaddle() {
-		if (ball.getY() > HEIGHT - PADDLE_Y_OFFSET - PADDLE_HEIGHT - BALL_RADIUS * 2 ) {    //check if the ball drops below the paddle
-			double diff = ball.getY() - (HEIGHT - PADDLE_Y_OFFSET - PADDLE_HEIGHT - BALL_RADIUS * 2 );
-			ball.move(0, -2 * diff);    //move ball an amount equal to the amount it drops below the paddle
-		}
-	}
+
 
 	/*
 	 * Show the prompt to indicate whether user loses or wins.
