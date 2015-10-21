@@ -217,7 +217,7 @@ private static final int DELAY = 20;
 	 * display the turns users have at the beginning of the game
 	 */
 	
-	private void showInitiallLifeCount() {
+	private void showInitialLifeCount() {
 		GLabel lifeCount = prompt("You have " + NTURNS + "lives.");
 		add (lifeCount);
 		waitForClick ();
