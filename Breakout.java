@@ -72,6 +72,7 @@ private static final int DELAY = 20;
 	private GRect paddle;    //the paddle
 	private GOval ball;     //the ball
 	private double vx, vy;    // the x component and y component of velocity of ball
+	private GLabel lifeCount;    //the prompt to show the life user still has
 	private RandomGenerator rgen = RandomGenerator.getInstance();    // create a random number generator
 	private int brickCount = NBRICK_ROWS * NBRICKS_PER_ROW ;     //total number of bricks
 	
@@ -350,7 +351,7 @@ private static final int DELAY = 20;
 		if (obj == paddle) {   
 			vy = -Math.abs(vy);
 			PrecisionPaddle();
-		} else if (obj != null) {    //check if the ball hits a brick
+		} else if (obj != null && obj != lifeCount) {    //check if the ball hits a brick
 			remove (obj);
 			vy = -vy;
 			brickCount--;
