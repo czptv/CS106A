@@ -252,7 +252,7 @@ private static final int DELAY = 20;
 			add (life);
 			while (stillAlive) {    //the ball moves and bounces until the user loses or wins the turn.
 				moveBall();
-				loseOneTurn=(ball.getY() >= HEIGHT);   //user loses one turn when the ball falls under the paddle.
+				loseOneTurn=(ball.getY() >= HEIGHT - 2 * BALL_RADIUS);   //user loses one turn when the ball falls under the paddle.
 				win=(brickCount == 0);    //user wins when there is no brick left.
 				stillAlive= !(loseOneTurn || win);
 			}
