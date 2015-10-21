@@ -81,6 +81,7 @@ private static final int DELAY = 20;
 	
 	public void run() {
 		setup();
+		showInitialLifeCount();
 		play();
 	}
  
@@ -213,6 +214,17 @@ private static final int DELAY = 20;
 	
 
 	/*
+	 * display the turns users have at the beginning of the game
+	 */
+	
+	private void showInitiallLifeCount() {
+		GLabel lifeCount = prompt("You have " + NTURNS + "lives.");
+		add (lifeCount);
+		waitForClick ();
+		remove (lifeCount);
+	}
+	
+	/*
 	 * Users start the game with a click. The game does not end until the ball falls off the bottom 
 	 * of the screen or there is no brick left. If you break all the bricks before using up the lives, 
 	 * you win. If the ball falls off the bottom of the screen, you turn to other round until you use 
@@ -323,6 +335,7 @@ private static final int DELAY = 20;
 			GObject lowerRight = checkCorner(rightX, lowerY);    //check lower-right corner		
 			if ((lowerLeft == paddle) && (lowerRight == paddle)) {    //When both lower corners hit paddle, change direction.
 				vy = -vy;	
+				PrecisionPaddle();
 			}
 		}
 	}
@@ -337,6 +350,7 @@ private static final int DELAY = 20;
 		GObject obj = getElementAt(x, y);    //check the corner for GObject
 		if (obj == paddle) {   
 			vy = -Math.abs(vy);
+			PrecisionPaddle();
 		} else if (obj != null) {    //check if the ball hits a brick
 			remove (obj);
 			vy = -vy;
@@ -347,7 +361,16 @@ private static final int DELAY = 20;
 		return obj;
 	}
 	
-
+	/*
+	 * check if ball gets into the paddle, update location as appropriate
+	 */
+	
+	private void PrecisionPaddle() {
+		if (ball.getY() > HEIGHT - PADDLE_Y_OFFSET - PADDLE_HEIGHT - BALL_RADIUS * 2 ) {    //check if the ball drops below the paddle
+			double diff = ball.getY() - (HEIGHT - PADDLE_Y_OFFSET - PADDLE_HEIGHT - BALL_RADIUS * 2 );
+			ball.move(0, -2 * diff);    //move ball an amount equal to the amount it drops below the paddle
+		}
+	}
 
 	/*
 	 * Show the prompt to indicate whether user loses or wins.
