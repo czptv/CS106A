@@ -354,8 +354,8 @@ private static final int DELAY = 20;
 			PrecisionPaddle();
 		} else if (obj != null && obj != lifeCount) {    //check if the ball hits a brick
 			remove (obj);
-			vy = -1.1 * vy;
-			vx = 1.1 * vx;
+			vy = -1.05 * vy;
+			vx = 1.05 * vx;
 			brickCount--;
 			AudioClip bounceClip = MediaTools.loadAudioClip("bounce.au");
 			bounceClip.play();
