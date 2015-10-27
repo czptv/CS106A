@@ -94,10 +94,9 @@ private static final int DELAY = 20;
 	private void setup() {
 		drawBricks();
 		drawPaddle();
-		addMouseListeners();
 	}
 	
-	private void mouseClicked(MouseEvent e) {
+	public void mouseClicked(MouseEvent e) {
 		if (ball == null) {
 			createBall();
 		}
@@ -254,6 +253,7 @@ private static final int DELAY = 20;
 		boolean win = false;
 		boolean stillAlive= true;
 		for (int i=NTURNS; i>0; i--) {    //loops for the number of turns.
+			addMouseListeners();
 			GLabel life=showLifeCount(i);
 			waitForClick();
 			add (life);
@@ -265,7 +265,6 @@ private static final int DELAY = 20;
 			}
 			if (win) break;    //breaks from the loop if the user wins in one turn.
 			remove (ball);
-			createBall();    //a new ball appears on the center of the screen after one turn
 			stillAlive =true;
 			remove (life);
 		}
