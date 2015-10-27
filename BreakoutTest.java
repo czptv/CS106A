@@ -94,9 +94,14 @@ private static final int DELAY = 20;
 	private void setup() {
 		drawBricks();
 		drawPaddle();
-		createBall();
+		addMouseListeners();
 	}
 	
+	private void mouseClicked(MouseEvent e) {
+		if (ball == null) {
+			createBall();
+		}
+	}
 	/*
 	 * Draw all the bricks.
 	 */
